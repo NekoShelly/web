@@ -1,33 +1,95 @@
 body {
     font-family: system-ui;
-    font-weight: 400;
     font-style: normal;
     background: url("purple_bg.jpg");
+    background-position: center;
     color: #c8afe3;
     margin: 0;
-    padding: 20px;
+    text-align: center;
+    overflow-x: hidden;
+    font-weight: 600;
+}
+
+/* unvisited link */
+a:link {
+    color: white;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+}
+
+/* mouse over link */
+a:hover {
+    color: #e9e0ff;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+
+hr {
+    border: none;
+    border-top: 2px dashed white;
+}
+
+ul {
+    list-style-type: circle;
 }
 
 h1 {
     font-family: "Press Start 2P", system-ui;
-    border-bottom: 2px solid #3498db;
     padding-bottom: 10px;
+    color: #0e001a;
 }
 
 h2 {
     font-family: "Press Start 2P", system-ui;
+    color: white;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 p {
     font-family: "Press Start 2P", system-ui;
 }
 
+li a {
+    display: block;
+    padding: 0.5em 0.5em;
+    text-decoration: none;
+    transition: 250ms;
+    list-style-type: circle;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+li a:hover {
+    background-color: #0e001a;
+    transform: scale(1.02);
+}
+
+.sopra, .sotto {
+    place-self: center;
+    width: calc(100% - 40px);
+    margin: 0 auto 20px auto;
+    height: 10%;
+    border-radius: 40px;
+    background: #0e001a;
+    padding: 15px;
+    background-image: linear-gradient(#beaae6, #19003b, #370082);
+    border: solid;
+    border-color: #19003b;
+
+}
+
 .glass {
+  place-self: center;
   width: 40%;
   height: 60%;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(7px);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 
