@@ -3,16 +3,23 @@ body {
     font-weight: 400;
     font-style: normal;
     background: url("purple_bg.jpg");
-    color: #333;
+    color: #c8afe3;
     margin: 0;
     padding: 20px;
 }
 
 h1 {
     font-family: "Press Start 2P", system-ui;
-    color: #28005c;
     border-bottom: 2px solid #3498db;
     padding-bottom: 10px;
+}
+
+h2 {
+    font-family: "Press Start 2P", system-ui;
+}
+
+p {
+    font-family: "Press Start 2P", system-ui;
 }
 
 .glass {
@@ -60,13 +67,4 @@ h1 {
     transparent,
     rgba(255, 255, 255, 0.3)
   );
-}
-
-h2 {
-    color: #28005c;
-    font-family: "Press Start 2P", system-ui;
-}
-
-p {
-    font-family: "Press Start 2P", system-ui;
 }
