@@ -2,7 +2,7 @@ body {
     font-family: system-ui;
     font-weight: 400;
     font-style: normal;
-    background: purple_bg.jpg;
+    background: url("purple_bg.jpg");
     color: #333;
     margin: 0;
     padding: 20px;
