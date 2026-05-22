@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventi</title>
+    <style>
+        button {
+            font-size: 15px;
+            align-self: center;
+        }
+        div {
+            border: 5px solid #72b8ba;
+            background-color: #cfe6e0;
+            align-self: center;
+            width: 28em;
+            height: 30em;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+        h1,p {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #153973;
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <h1>Form</h1>
+    <form id="form">
+        <p>Inserisci il codice fiscale</p>
+        <input type="text" id="codiceFiscale">
+        <p>Inserisci la password</p>
+        <input type="password" id="password">
+        <p>Ripeti la password</p>
+        <input type="password" id="ripetipassword">
+        <p id="errore"></p>
+        <p id="nascosto">Clicca qui per nascondere il testo</p>
+        <br>
+        <button type="submit" id="pulsante">Invia</button>
+    </form>
+    </div>
+    <script>
+        const button=document.querySelector("#pulsante");
+        button.addEventListener("mouseover", (event)=>{
+            event.target.style.backgroundColor="#72b8ba";
+        });
+        button.addEventListener("mouseout", (event)=>{
+            event.target.style.backgroundColor="";
+        });
 
+        const cod=document.getElementById("codiceFiscale");
+        cod.addEventListener("input", (event)=>{
+            cod.value=cod.value.toUpperCase();
+        });
+
+        cod.addEventListener("focus", (event)=>{
+            event.target.style.backgroundColor="#ccffd2";
+        });
+        cod.addEventListener("blur", (event)=>{
+            event.target.style.backgroundColor="#ffffff";
+        });
+
+        const nascosto=document.getElementById("nascosto");
+        nascosto.addEventListener("click", (event)=>{
+            nascosto.hidden=true;	
+        });
+
+        const password=document.getElementById("password");
+        const ripetipassword=document.getElementById("ripetipassword");
+        const errore=document.getElementById("errore");
+        password.addEventListener("blur", (event)=>{
+            if (password.value!=ripetipassword.value) {
+                errore.textContent="Errore. Le password non corrispondono";
+            } else {
+                errore.textContent="";
+            }
+        });
+        ripetipassword.addEventListener("input", ()=> {
+            if (password.value!=null && ripetipassword.value!=null && password.value!==ripetipassword.value) {
+                errore.textContent="Errore. Le password non corrispondono";
+            } else {
+                errore.textContent="";
+            }
+        });
+
+        password.addEventListener("input", (event)=>{
+            const p=event.target.value;
+            if (p.length<8) {
+                errore.textContent="La password deve contenere almeno 8 caratteri";
+                event.target.style.backgroundColor="#f52230";
+            } else {
+                errore.textContent="";
+                event.target.style.backgroundColor="";
+            }
+        });
+    </script>
+
+</body>
+</html>
