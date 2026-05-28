@@ -8,6 +8,8 @@
         button {
             font-size: 15px;
             align-self: center;
+            height: 30px;
+            width: 70px;
         }
         div {
             border: 5px solid #72b8ba;
@@ -47,6 +49,7 @@
         const button=document.querySelector("#pulsante");
         button.addEventListener("mouseover", (event)=>{
             event.target.style.backgroundColor="#72b8ba";
+            event.target.style.color="#004a59";
         });
         button.addEventListener("mouseout", (event)=>{
             event.target.style.backgroundColor="";
