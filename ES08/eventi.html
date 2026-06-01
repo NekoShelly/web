@@ -15,8 +15,8 @@
             border: 5px solid #72b8ba;
             background-color: #cfe6e0;
             align-self: center;
-            width: 28em;
-            height: 30em;
+            width: 30em;
+            height: 40em;
             display: flex;
             align-items: center;
             text-align: center;
@@ -26,6 +26,17 @@
         h1,p {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
             color: #153973;
+        }
+        #progressBar {
+            width: 200px;
+            height: 20px;
+            border: 1px solid black;
+        }
+        #progressBar::-webkit-progress-value {
+        background-color: var(--bar-color, #0fd430);
+        }
+        #output { 
+        white-space: pre-line;
         }
     </style>
 </head>
@@ -41,20 +52,26 @@
         <input type="password" id="ripetipassword">
         <p id="errore"></p>
         <p id="nascosto">Clicca qui per nascondere il testo</p>
+        <button type="button" id="pulsante">Cliccami</button>
+        <br> <br>
+        <progress id="progressBar" max="5" value="0"></progress>
+        <p id="output"></p>
         <br>
-        <button type="submit" id="pulsante">Invia</button>
+        <button type="submit">Invia</button>
     </form>
     </div>
     <script>
-        const button=document.querySelector("#pulsante");
-        button.addEventListener("mouseover", (event)=>{
-            event.target.style.backgroundColor="#72b8ba";
-            event.target.style.color="#ffffff";
-        });
-        button.addEventListener("mouseout", (event)=>{
-            event.target.style.backgroundColor="";
-            event.target.style.color="#000000";
-        });
+        const button=document.querySelectorAll("button"); 
+        for (let i=0;i<button.length;i++) {
+            button[i].addEventListener("mouseover", (event)=>{
+                event.target.style.backgroundColor="#72b8ba";
+                event.target.style.color="#ffffff";
+            });
+            button[i].addEventListener("mouseout", (event)=>{
+                event.target.style.backgroundColor="";
+                event.target.style.color="#000000";
+            });
+        }
 
         const cod=document.getElementById("codiceFiscale");
         cod.addEventListener("input", (event)=>{
@@ -84,7 +101,7 @@
             }
         });
         ripetipassword.addEventListener("input", ()=> {
-            if (password.value!=null && ripetipassword.value!=null && password.value!==ripetipassword.value) {
+            if (password.value!="" && ripetipassword.value!="" && password.value!==ripetipassword.value) {
                 errore.textContent="Errore. Le password non corrispondono";
             } else {
                 errore.textContent="";
@@ -99,6 +116,57 @@
             } else {
                 errore.textContent="";
                 event.target.style.backgroundColor="";
+            }
+        });
+
+        const button2=document.getElementById("pulsante");
+        const output=document.getElementById("output");
+        button2.addEventListener("click", (event)=>{
+            output.textContent="Il pulsante è stato premuto \n";
+        });
+
+        const progressBar=document.getElementById("progressBar");
+        password.addEventListener("input", (event)=>{
+            output.textContent="";
+            let progress=0; //variabile per calcolare il numero di requisiti soddisfatti
+            const p=event.target.value;
+            if (p.length>=8) {
+                progress++;
+                output.textContent+="Contiene almeno 8 caratteri \n";
+            } else {
+                output.textContent+="Non contiene almeno 8 caratteri \n";
+            }
+            if (/[A-Z]/.test(p)) {
+                progress++;
+                output.textContent+="Contiene una lettera maiuscola \n";
+            } else {
+                output.textContent+="Non contiene una lettera maiuscola \n";
+            }
+            if (/[a-z]/.test(p)) {
+                progress++;
+                output.textContent+="Contiene una lettera minuscola \n";
+            } else {
+                output.textContent+="Non contiene una lettera minuscola \n";
+            }
+            if (/[0-9]/.test(p)) {
+                progress++;
+                output.textContent+="Contiene un numero \n";
+            } else {
+                output.textContent+="Non contiene un numero \n";
+            }
+            if (/[^A-Za-z0-9]/.test(p)) {
+                progress++;
+                output.textContent+="Contiene un carattere speciale \n";
+            } else {
+                output.textContent+="Non contiene un carattere speciale \n";
+            }
+            progressBar.value=progress;
+            if (progress>3) {
+                progressBar.style.setProperty("--bar-color", "#0ad167");
+            } else if (progress<3) {
+                progressBar.style.setProperty("--bar-color", "#d10a0a");
+            } else {
+                progressBar.style.setProperty("--bar-color", "#d1960a");
             }
         });
     </script>
